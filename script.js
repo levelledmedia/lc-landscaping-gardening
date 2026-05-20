@@ -709,35 +709,68 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxVideo = document.getElementById('lightboxVideo');
   const lightboxClose = document.getElementById('lightboxClose');
-  const portfolioCarouselSlides = document.querySelectorAll('.portfolio-carousel-slide img');
+  lightboxImage.style.display = 'none';
+  lightboxVideo.style.display = 'none';
 
-  portfolioCarouselSlides.forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImage.src = img.src;
-      lightboxImage.alt = img.alt;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  lightboxClose.addEventListener('click', () => {
+  const closeLightbox = () => {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    lightboxImage.style.display = 'none';
+    lightboxImage.src = '';
+    lightboxVideo.style.display = 'none';
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+  };
+
+  portfolioTrack.addEventListener('click', (e) => {
+    const slide = e.target.closest('.portfolio-carousel-slide');
+    if (!slide) return;
+
+    const video = slide.querySelector('video');
+    if (video) {
+      lightboxImage.style.display = 'none';
+      lightboxImage.src = '';
+      lightboxVideo.style.display = 'block';
+      lightboxVideo.src = video.src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      lightboxVideo.play();
+      return;
+    }
+
+    const image = slide.querySelector('img');
+    if (!image) return;
+    lightboxVideo.style.display = 'none';
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+    lightboxImage.style.display = 'block';
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
   });
+
+  lightboxClose.addEventListener('click', closeLightbox);
 
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+      closeLightbox();
     }
+  });
+
+  // Seek to 3s so video thumbnails show a usable frame.
+  document.querySelectorAll('#portfolioTrack video[preload="metadata"]').forEach(v => {
+    const seek = () => { v.currentTime = Math.min(3, v.duration || 3); };
+    if (v.readyState >= 1) seek();
+    else v.addEventListener('loadedmetadata', seek, { once: true });
   });
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+      closeLightbox();
     }
   });
 
