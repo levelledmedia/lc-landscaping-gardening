@@ -2468,16 +2468,6 @@ body.tall-header .header__nav-bar {
     gap: var(--sp-4);
   }
 
-  .lightbox {
-    align-items: flex-start;
-    padding: calc(var(--sp-4) + 52px) var(--sp-4) var(--sp-4);
-  }
-
-  .lightbox__content {
-    max-width: 100%;
-    max-height: calc(100vh - 88px);
-  }
-
   .lightbox__nav-btn {
     top: var(--sp-4);
     transform: none;
@@ -2490,12 +2480,13 @@ body.tall-header .header__nav-bar {
   }
 
   .lightbox__nav-btn--prev {
-    left: auto;
-    right: calc(var(--sp-4) + 96px);
+    left: calc(50% - 48px);
+    right: auto;
   }
 
   .lightbox__nav-btn--next {
-    right: calc(var(--sp-4) + 48px);
+    left: calc(50% + 4px);
+    right: auto;
   }
 
   .lightbox__close {
@@ -2503,11 +2494,6 @@ body.tall-header .header__nav-bar {
     right: var(--sp-4);
     width: 44px;
     height: 44px;
-  }
-
-  .lightbox__image,
-  .lightbox__video {
-    max-height: calc(100vh - 88px);
   }
 
   .coverage-areas {
