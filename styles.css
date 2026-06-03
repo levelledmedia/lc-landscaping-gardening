@@ -1379,10 +1379,6 @@ body.tall-header .header__nav-bar {
   transform: scale(1.05);
 }
 
-.section--portfolio-grid {
-  border-top: 1px solid var(--n-300);
-}
-
 .portfolio-grid-wrapper {
   width: min(100%, calc(var(--container) + (var(--gutter) * 2)));
   margin: 0 auto;
