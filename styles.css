@@ -2468,11 +2468,28 @@ body.tall-header .header__nav-bar {
     gap: var(--sp-4);
   }
 
+  .lightbox {
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    row-gap: var(--sp-3);
+    column-gap: var(--sp-6);
+  }
+
+  .lightbox__content {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .lightbox__nav-btn {
-    top: var(--sp-4);
+    position: static;
+    order: 2;
     transform: none;
     width: 44px;
     height: 44px;
+    flex: 0 0 auto;
   }
 
   .lightbox__nav-btn:hover {
@@ -2480,12 +2497,12 @@ body.tall-header .header__nav-bar {
   }
 
   .lightbox__nav-btn--prev {
-    left: calc(50% - 48px);
+    left: auto;
     right: auto;
   }
 
   .lightbox__nav-btn--next {
-    left: calc(50% + 4px);
+    left: auto;
     right: auto;
   }
 
