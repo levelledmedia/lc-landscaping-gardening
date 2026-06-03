@@ -646,11 +646,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioGrid = document.getElementById('portfolioGrid');
   const portfolioGridToggleWrap = document.getElementById('portfolioGridToggleWrap');
   const portfolioGridToggleBtn = document.getElementById('portfolioGridToggleBtn');
-  const portfolioMediaItems = Array.from({ length: 110 }, (_, index) => ({
+  const recentPortfolioMediaItems = [
+    './images/WhatsApp Image 2026-06-03 at 01.30.57.jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (1).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (2).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (3).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (4).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (5).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 01.30.57 (6).jpeg',
+    './images/WhatsApp Image 2026-06-03 at 02.56.46.jpeg',
+    './images/WhatsApp Image 2026-06-03 at 02.56.46 (1).jpeg'
+  ].map((src, index) => ({
     type: 'image',
-    src: `./images/portfolio${index + 1}.jpg`,
-    alt: `Portfolio project ${index + 1}`
+    src,
+    alt: `Recent portfolio project ${index + 1}`
   }));
+  const portfolioMediaItems = [
+    ...recentPortfolioMediaItems,
+    ...Array.from({ length: 110 }, (_, index) => ({
+      type: 'image',
+      src: `./images/portfolio${index + 1}.jpg`,
+      alt: `Portfolio project ${index + 1}`
+    }))
+  ];
   let currentPortfolioIndex = 0;
 
   function equalizePortfolioGridRows() {
