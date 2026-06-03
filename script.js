@@ -145,11 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  document.querySelectorAll('.portfolio-grid-item').forEach((item, index) => {
-    item.dataset.delay = index * 40;
-    animateObserver.observe(item);
-  });
-
   // Testimonial Cards Animation (only the first 3 slides for initial page load)
   const originalTestimonialSlides = document.querySelectorAll('.testimonial-carousel-slide:not([data-carousel-clone])');
   originalTestimonialSlides.forEach((slide, index) => {
@@ -717,8 +712,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
       portfolioGrid.appendChild(gridItem);
 
-      gridItem.dataset.delay = index * 40;
-      animateObserver.observe(gridItem);
     });
 
     const initialRows = parseInt(portfolioGrid.dataset.initialRows || '4', 10);
