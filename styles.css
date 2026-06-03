@@ -1379,26 +1379,24 @@ body.tall-header .header__nav-bar {
   transform: scale(1.05);
 }
 
-.portfolio-carousel-wrapper {
-  padding-left: var(--gutter);
-  overflow: visible;
+.section--portfolio-grid {
+  border-top: 1px solid var(--n-300);
 }
 
-.portfolio-carousel {
+.portfolio-grid-wrapper {
+  width: min(100%, calc(var(--container) + (var(--gutter) * 2)));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-6);
   margin-top: var(--sp-8);
-  overflow: visible;
-  position: relative;
 }
 
-.portfolio-carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-  padding-left: calc((100vw - var(--container)) / 2);
-}
-
-.portfolio-carousel-slide {
-  flex: 0 0 calc(28% - var(--sp-6) * 2 / 3);
-  margin-right: var(--sp-6);
+.portfolio-grid-item {
   border-radius: var(--r-xl);
   overflow: hidden;
   box-shadow: var(--sh-soft);
@@ -1409,7 +1407,27 @@ body.tall-header .header__nav-bar {
   position: relative;
 }
 
-.portfolio-carousel-slide--video::after {
+.portfolio-grid-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-float);
+}
+
+.portfolio-grid-item img,
+.portfolio-grid-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 5 / 5;
+  transition: opacity 0.22s ease;
+}
+
+.portfolio-grid-item:hover img,
+.portfolio-grid-item:hover video {
+  opacity: 0.94;
+}
+
+.portfolio-grid-item--video::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -1424,28 +1442,27 @@ body.tall-header .header__nav-bar {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.portfolio-carousel-slide--video:hover::after {
+.portfolio-grid-item--video:hover::after {
   transform: translate(-50%, -50%) scale(1.1);
   background-color: rgba(255, 255, 255, 1);
 }
 
-.portfolio-carousel-track .portfolio-carousel-slide[data-carousel-clone] {
-  opacity: 1;
-  transform: translateY(0);
+.portfolio-grid-item.portfolio-grid-hidden {
+  display: none;
 }
 
-.portfolio-carousel-slide:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh-float);
+.portfolio-grid-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-8);
 }
 
-.portfolio-carousel-slide img,
-.portfolio-carousel-slide video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  aspect-ratio: 5 / 5;
+.portfolio-grid-toggle[hidden] {
+  display: none;
+}
+
+.portfolio-grid-toggle__btn {
+  min-width: 220px;
 }
 
 /* ========================================
@@ -1465,6 +1482,34 @@ body.tall-header .header__nav-bar {
 
 .lightbox.active {
   display: flex;
+}
+
+.lightbox__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(90vw, 1200px);
+  max-height: 90vh;
+}
+
+.lightbox__nav-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.lightbox__nav-btn:hover {
+  transform: translateY(-50%);
+}
+
+.lightbox__nav-btn--prev {
+  left: var(--sp-6);
+}
+
+.lightbox__nav-btn--next {
+  right: var(--sp-6);
 }
 
 .lightbox__close {
@@ -1489,15 +1534,15 @@ body.tall-header .header__nav-bar {
 }
 
 .lightbox__image {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 90vh;
   border-radius: var(--r-xl);
   box-shadow: var(--sh-float);
 }
 
 .lightbox__video {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 90vh;
   border-radius: var(--r-xl);
   box-shadow: var(--sh-float);
 }
@@ -2307,8 +2352,8 @@ body.tall-header .header__nav-bar {
     flex: 0 0 calc(50% - var(--sp-6) * 2 / 3);
   }
 
-  .portfolio-carousel-slide {
-    flex: 0 0 calc(45% - var(--sp-6) * 2 / 3);
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -2425,8 +2470,9 @@ body.tall-header .header__nav-bar {
     flex: 0 0 calc(85% - var(--sp-6) * 2 / 3);
   }
 
-  .portfolio-carousel-slide {
-    flex: 0 0 calc(80% - var(--sp-6) * 2 / 3);
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
   }
 
   .coverage-areas {
@@ -2898,7 +2944,7 @@ body.dark-mode .service-card__desc {
 }
 
 /* Dark Mode - Portfolio */
-body.dark-mode .portfolio-carousel-slide {
+body.dark-mode .portfolio-grid-item {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 
