@@ -655,7 +655,6 @@ document.addEventListener('DOMContentLoaded', function() {
     './images/WhatsApp Image 2026-06-03 at 01.30.57 (5).jpeg',
     './images/WhatsApp Image 2026-06-03 at 01.30.57 (6).jpeg',
     './images/WhatsApp Image 2026-06-03 at 02.56.46.jpeg',
-    './images/WhatsApp Image 2026-06-03 at 02.56.46 (1).jpeg'
   ].map((src, index) => ({
     type: 'image',
     src,
