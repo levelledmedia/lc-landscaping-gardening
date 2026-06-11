@@ -647,6 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const portfolioGridToggleWrap = document.getElementById('portfolioGridToggleWrap');
   const portfolioGridToggleBtn = document.getElementById('portfolioGridToggleBtn');
   const recentPortfolioMediaItems = [
+    './images/WhatsApp Image 2026-06-11 at 20.33.18.jpeg',
     './images/WhatsApp Image 2026-06-03 at 01.30.57.jpeg',
     './images/WhatsApp Image 2026-06-03 at 01.30.57 (1).jpeg',
     './images/WhatsApp Image 2026-06-03 at 01.30.57 (2).jpeg',
