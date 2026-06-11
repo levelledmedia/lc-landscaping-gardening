@@ -2459,16 +2459,8 @@ body.tall-header .header__nav-bar {
     grid-template-columns: 1fr;
   }
 
-  .services-carousel.services-layout--grid .services-carousel-track {
-    justify-content: center;
-  }
-
   .service-card {
     flex: 0 0 calc(85% - var(--sp-6) * 2 / 3);
-  }
-
-  .services-carousel.services-layout--grid .service-card {
-    margin-inline: auto;
   }
 
   .portfolio-grid {
